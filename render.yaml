@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: neon-vault-casino
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: SESSION_SECRET
+        generateValue: true
+    disk:
+      name: neon-vault-data
+      mountPath: /var/data
+      sizeGB: 1
